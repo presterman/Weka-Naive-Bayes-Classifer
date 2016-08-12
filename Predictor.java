@@ -219,16 +219,12 @@ public class Predictor {
 					
 								// write to log
 							   logger.severe("Error loading classes: " + e.toString());
-									
-									e.printStackTrace();
+							   e.printStackTrace();
 									
 								}
 	    	 
 	  
 	     }
-	
-
-			
 							
 	public Map<String, String>  predict(String thetext, String theproduct) {
 		 Map<String, String> map = new HashMap<String, String>();
@@ -275,26 +271,24 @@ public class Predictor {
 					fvWekaAttributes.addElement(attribute1);
 					fvWekaAttributes.addElement(attribute2);
 					
-				Instances test = new Instances("Test relation", fvWekaAttributes, 3);    //was 3 ?? 
+				        Instances test = new Instances("Test relation", fvWekaAttributes, 3);    //was 3 ?? 
 					
 				    
-					// Create and add the instance
-				  Instance instance = new Instance(2);
-				   // Instance instance = new Instance(1);
+				
+				       Instance instance = new Instance(2);
+				
 					
 					instance.setValue(attribute1, thetext);
 					// Another way to do it:
 					// instance.setValue((Attribute)fvWekaAttributes.elementAt(0), text);
 					test.add(instance);
-				  test.setClassIndex(1);
+				        test.setClassIndex(1);
 					
 				
 			
-				     int i=0;
 				   double[] preddist=null;
-				
-					double pred= m_Classifier.classifyInstance(test.instance(i));
-					test.classAttribute().value((int) pred);
+				   double pred= m_Classifier.classifyInstance(test.instance(i));
+			           test.classAttribute().value((int) pred);
 					
 					
               	preddist=m_Classifier.distributionForInstance(test.instance(i));
@@ -309,18 +303,18 @@ public class Predictor {
               		 for (int j=0; j< test.instance(i).numClasses(); j++)
     				   {
               			String keyval=test.classAttribute().value(j); 
-                       String thekey=keyval + " (" + kb.get(keyval)  +")"; //get KB ID (class) and the KB title
+                                String thekey=keyval + " (" + kb.get(keyval)  +")"; //get KB ID (class) and the KB title
               			map.put(thekey, df.format(preddist[j])); //store the prediction value for this KB ID
     				   
     				   }
 				 
 	} catch (Exception e) {
 		logger.severe("Error in predict: " + e.toString());
-	      e.printStackTrace();
+	        e.printStackTrace();
 	    }
 		
 		 return MapSort.sortByValue(map);
-		 //return map;
+		 
 
 	} 
 
