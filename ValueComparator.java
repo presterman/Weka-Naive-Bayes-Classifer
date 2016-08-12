@@ -14,9 +14,7 @@ public class ValueComparator implements Comparator {
     Comparable valueA = (Comparable) map.get(keyA);
     Comparable valueB = (Comparable) map.get(keyB);
  
-  //  System.out.println(valueA +" - "+valueB);
- 
-  //  return valueA.compareTo(valueB);
+  
     return valueB.compareTo(valueA);
  
   }
