@@ -21,10 +21,7 @@ public class Predict1 {
 	 @GET	 
 	 @Produces(MediaType.APPLICATION_JSON)
 	public String modelPredict(@PathParam("varX") String varX){
-	//	 String json_str= new String();
-	//	 json_str="{";
-		 
-		 
+
 		 Map<String, String> map=p.predict(varX, "Fusion");
 		 Gson gson = new Gson();
 		//get the correct parameter for the generic type to ensure correct serialization
